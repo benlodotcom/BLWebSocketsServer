@@ -10,20 +10,39 @@
 		B57C320B16AF3A46004A6B5F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C320A16AF3A46004A6B5F /* UIKit.framework */; };
 		B57C320D16AF3A46004A6B5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C320C16AF3A46004A6B5F /* Foundation.framework */; };
 		B57C320F16AF3A46004A6B5F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C320E16AF3A46004A6B5F /* CoreGraphics.framework */; };
-		B57C321516AF3A46004A6B5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B57C321316AF3A46004A6B5F /* InfoPlist.strings */; };
-		B57C321716AF3A46004A6B5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C321616AF3A46004A6B5F /* main.m */; };
-		B57C321B16AF3A46004A6B5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C321A16AF3A46004A6B5F /* AppDelegate.m */; };
-		B57C321D16AF3A46004A6B5F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C321C16AF3A46004A6B5F /* Default.png */; };
-		B57C321F16AF3A46004A6B5F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C321E16AF3A46004A6B5F /* Default@2x.png */; };
-		B57C322116AF3A46004A6B5F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C322016AF3A46004A6B5F /* Default-568h@2x.png */; };
-		B57C322416AF3A46004A6B5F /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57C322216AF3A46004A6B5F /* MainStoryboard_iPhone.storyboard */; };
-		B57C322716AF3A46004A6B5F /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57C322516AF3A46004A6B5F /* MainStoryboard_iPad.storyboard */; };
-		B57C322A16AF3A46004A6B5F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C322916AF3A46004A6B5F /* ViewController.m */; };
 		B57C323216AF3A46004A6B5F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C323116AF3A46004A6B5F /* SenTestingKit.framework */; };
 		B57C323316AF3A46004A6B5F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C320A16AF3A46004A6B5F /* UIKit.framework */; };
 		B57C323416AF3A46004A6B5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C320C16AF3A46004A6B5F /* Foundation.framework */; };
 		B57C323C16AF3A47004A6B5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B57C323A16AF3A47004A6B5F /* InfoPlist.strings */; };
 		B57C323F16AF3A47004A6B5F /* BLWebSocketsServerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C323E16AF3A47004A6B5F /* BLWebSocketsServerTests.m */; };
+		B57C325916AF3AC3004A6B5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C324A16AF3AC3004A6B5F /* AppDelegate.m */; };
+		B57C325B16AF3AC3004A6B5F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C324D16AF3AC3004A6B5F /* Default-568h@2x.png */; };
+		B57C325C16AF3AC3004A6B5F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C324E16AF3AC3004A6B5F /* Default.png */; };
+		B57C325D16AF3AC3004A6B5F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B57C324F16AF3AC3004A6B5F /* Default@2x.png */; };
+		B57C325E16AF3AC3004A6B5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B57C325016AF3AC3004A6B5F /* InfoPlist.strings */; };
+		B57C325F16AF3AC3004A6B5F /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57C325216AF3AC3004A6B5F /* MainStoryboard_iPad.storyboard */; };
+		B57C326016AF3AC3004A6B5F /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57C325416AF3AC3004A6B5F /* MainStoryboard_iPhone.storyboard */; };
+		B57C326116AF3AC3004A6B5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C325616AF3AC3004A6B5F /* main.m */; };
+		B57C326216AF3AC3004A6B5F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C325816AF3AC3004A6B5F /* ViewController.m */; };
+		B57C327416AF3B2D004A6B5F /* base64-decode.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326516AF3B2D004A6B5F /* base64-decode.c */; };
+		B57C327516AF3B2D004A6B5F /* client-handshake.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326616AF3B2D004A6B5F /* client-handshake.c */; };
+		B57C327616AF3B2D004A6B5F /* client-parser.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326716AF3B2D004A6B5F /* client-parser.c */; };
+		B57C327716AF3B2D004A6B5F /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326816AF3B2D004A6B5F /* client.c */; };
+		B57C327816AF3B2D004A6B5F /* daemonize.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326916AF3B2D004A6B5F /* daemonize.c */; };
+		B57C327916AF3B2D004A6B5F /* extension-deflate-frame.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326A16AF3B2D004A6B5F /* extension-deflate-frame.c */; };
+		B57C327A16AF3B2D004A6B5F /* extension-deflate-stream.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326C16AF3B2D004A6B5F /* extension-deflate-stream.c */; };
+		B57C327B16AF3B2D004A6B5F /* extension.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326E16AF3B2D004A6B5F /* extension.c */; };
+		B57C327C16AF3B2D004A6B5F /* getifaddrs.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C326F16AF3B2D004A6B5F /* getifaddrs.c */; };
+		B57C327D16AF3B2D004A6B5F /* handshake.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C327116AF3B2D004A6B5F /* handshake.c */; };
+		B57C327E16AF3B2D004A6B5F /* libwebsockets.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C327216AF3B2D004A6B5F /* libwebsockets.c */; };
+		B57C328516AF3B3B004A6B5F /* output.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C327F16AF3B3B004A6B5F /* output.c */; };
+		B57C328616AF3B3B004A6B5F /* parsers.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C328016AF3B3B004A6B5F /* parsers.c */; };
+		B57C328716AF3B3B004A6B5F /* server-handshake.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C328216AF3B3B004A6B5F /* server-handshake.c */; };
+		B57C328816AF3B3B004A6B5F /* server.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C328316AF3B3B004A6B5F /* server.c */; };
+		B57C328916AF3B3B004A6B5F /* sha-1.c in Sources */ = {isa = PBXBuildFile; fileRef = B57C328416AF3B3B004A6B5F /* sha-1.c */; };
+		B57C328C16AF3B4E004A6B5F /* BLWebSocketsServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C328B16AF3B4E004A6B5F /* BLWebSocketsServer.m */; };
+		B57C329016AF3BF5004A6B5F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C328F16AF3BF5004A6B5F /* libz.dylib */; };
+		B57C329416AF4322004A6B5F /* www in Resources */ = {isa = PBXBuildFile; fileRef = B57C329316AF4322004A6B5F /* www */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,25 +60,50 @@
 		B57C320A16AF3A46004A6B5F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B57C320C16AF3A46004A6B5F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B57C320E16AF3A46004A6B5F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B57C321216AF3A46004A6B5F /* BLWebSocketsServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLWebSocketsServer-Info.plist"; sourceTree = "<group>"; };
-		B57C321416AF3A46004A6B5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B57C321616AF3A46004A6B5F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B57C321816AF3A46004A6B5F /* BLWebSocketsServer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BLWebSocketsServer-Prefix.pch"; sourceTree = "<group>"; };
-		B57C321916AF3A46004A6B5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B57C321A16AF3A46004A6B5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B57C321C16AF3A46004A6B5F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		B57C321E16AF3A46004A6B5F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		B57C322016AF3A46004A6B5F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		B57C322316AF3A46004A6B5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		B57C322616AF3A46004A6B5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		B57C322816AF3A46004A6B5F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B57C322916AF3A46004A6B5F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B57C323016AF3A46004A6B5F /* BLWebSocketsServerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLWebSocketsServerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57C323116AF3A46004A6B5F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B57C323916AF3A47004A6B5F /* BLWebSocketsServerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLWebSocketsServerTests-Info.plist"; sourceTree = "<group>"; };
 		B57C323B16AF3A47004A6B5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B57C323D16AF3A47004A6B5F /* BLWebSocketsServerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLWebSocketsServerTests.h; sourceTree = "<group>"; };
 		B57C323E16AF3A47004A6B5F /* BLWebSocketsServerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLWebSocketsServerTests.m; sourceTree = "<group>"; };
+		B57C324916AF3AC3004A6B5F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B57C324A16AF3AC3004A6B5F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B57C324B16AF3AC3004A6B5F /* BLWebSocketsServer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BLWebSocketsServer-Info.plist"; sourceTree = "<group>"; };
+		B57C324C16AF3AC3004A6B5F /* BLWebSocketsServer-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BLWebSocketsServer-Prefix.pch"; sourceTree = "<group>"; };
+		B57C324D16AF3AC3004A6B5F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B57C324E16AF3AC3004A6B5F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B57C324F16AF3AC3004A6B5F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B57C325116AF3AC3004A6B5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B57C325316AF3AC3004A6B5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		B57C325516AF3AC3004A6B5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		B57C325616AF3AC3004A6B5F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B57C325716AF3AC3004A6B5F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B57C325816AF3AC3004A6B5F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B57C326516AF3B2D004A6B5F /* base64-decode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "base64-decode.c"; sourceTree = "<group>"; };
+		B57C326616AF3B2D004A6B5F /* client-handshake.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "client-handshake.c"; sourceTree = "<group>"; };
+		B57C326716AF3B2D004A6B5F /* client-parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "client-parser.c"; sourceTree = "<group>"; };
+		B57C326816AF3B2D004A6B5F /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = client.c; sourceTree = "<group>"; };
+		B57C326916AF3B2D004A6B5F /* daemonize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = daemonize.c; sourceTree = "<group>"; };
+		B57C326A16AF3B2D004A6B5F /* extension-deflate-frame.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "extension-deflate-frame.c"; sourceTree = "<group>"; };
+		B57C326B16AF3B2D004A6B5F /* extension-deflate-frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "extension-deflate-frame.h"; sourceTree = "<group>"; };
+		B57C326C16AF3B2D004A6B5F /* extension-deflate-stream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "extension-deflate-stream.c"; sourceTree = "<group>"; };
+		B57C326D16AF3B2D004A6B5F /* extension-deflate-stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "extension-deflate-stream.h"; sourceTree = "<group>"; };
+		B57C326E16AF3B2D004A6B5F /* extension.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = extension.c; sourceTree = "<group>"; };
+		B57C326F16AF3B2D004A6B5F /* getifaddrs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getifaddrs.c; sourceTree = "<group>"; };
+		B57C327016AF3B2D004A6B5F /* getifaddrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getifaddrs.h; sourceTree = "<group>"; };
+		B57C327116AF3B2D004A6B5F /* handshake.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = handshake.c; sourceTree = "<group>"; };
+		B57C327216AF3B2D004A6B5F /* libwebsockets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libwebsockets.c; sourceTree = "<group>"; };
+		B57C327316AF3B2D004A6B5F /* libwebsockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libwebsockets.h; sourceTree = "<group>"; };
+		B57C327F16AF3B3B004A6B5F /* output.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = output.c; sourceTree = "<group>"; };
+		B57C328016AF3B3B004A6B5F /* parsers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parsers.c; sourceTree = "<group>"; };
+		B57C328116AF3B3B004A6B5F /* private-libwebsockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "private-libwebsockets.h"; sourceTree = "<group>"; };
+		B57C328216AF3B3B004A6B5F /* server-handshake.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "server-handshake.c"; sourceTree = "<group>"; };
+		B57C328316AF3B3B004A6B5F /* server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = server.c; sourceTree = "<group>"; };
+		B57C328416AF3B3B004A6B5F /* sha-1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "sha-1.c"; sourceTree = "<group>"; };
+		B57C328A16AF3B4E004A6B5F /* BLWebSocketsServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLWebSocketsServer.h; sourceTree = "<group>"; };
+		B57C328B16AF3B4E004A6B5F /* BLWebSocketsServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLWebSocketsServer.m; sourceTree = "<group>"; };
+		B57C328F16AF3BF5004A6B5F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		B57C329316AF4322004A6B5F /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57C329016AF3BF5004A6B5F /* libz.dylib in Frameworks */,
 				B57C320B16AF3A46004A6B5F /* UIKit.framework in Frameworks */,
 				B57C320D16AF3A46004A6B5F /* Foundation.framework in Frameworks */,
 				B57C320F16AF3A46004A6B5F /* CoreGraphics.framework in Frameworks */,
@@ -89,7 +134,8 @@
 		B57C31FB16AF3A46004A6B5F = {
 			isa = PBXGroup;
 			children = (
-				B57C321016AF3A46004A6B5F /* BLWebSocketsServer */,
+				B57C326316AF3AE6004A6B5F /* BLWebSocketsServer */,
+				B57C324816AF3AC3004A6B5F /* BLWebSocketsServerEchoDemo */,
 				B57C323716AF3A47004A6B5F /* BLWebSocketsServerTests */,
 				B57C320916AF3A46004A6B5F /* Frameworks */,
 				B57C320716AF3A46004A6B5F /* Products */,
@@ -108,40 +154,13 @@
 		B57C320916AF3A46004A6B5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B57C328F16AF3BF5004A6B5F /* libz.dylib */,
 				B57C320A16AF3A46004A6B5F /* UIKit.framework */,
 				B57C320C16AF3A46004A6B5F /* Foundation.framework */,
 				B57C320E16AF3A46004A6B5F /* CoreGraphics.framework */,
 				B57C323116AF3A46004A6B5F /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B57C321016AF3A46004A6B5F /* BLWebSocketsServer */ = {
-			isa = PBXGroup;
-			children = (
-				B57C321916AF3A46004A6B5F /* AppDelegate.h */,
-				B57C321A16AF3A46004A6B5F /* AppDelegate.m */,
-				B57C322216AF3A46004A6B5F /* MainStoryboard_iPhone.storyboard */,
-				B57C322516AF3A46004A6B5F /* MainStoryboard_iPad.storyboard */,
-				B57C322816AF3A46004A6B5F /* ViewController.h */,
-				B57C322916AF3A46004A6B5F /* ViewController.m */,
-				B57C321116AF3A46004A6B5F /* Supporting Files */,
-			);
-			path = BLWebSocketsServer;
-			sourceTree = "<group>";
-		};
-		B57C321116AF3A46004A6B5F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B57C321216AF3A46004A6B5F /* BLWebSocketsServer-Info.plist */,
-				B57C321316AF3A46004A6B5F /* InfoPlist.strings */,
-				B57C321616AF3A46004A6B5F /* main.m */,
-				B57C321816AF3A46004A6B5F /* BLWebSocketsServer-Prefix.pch */,
-				B57C321C16AF3A46004A6B5F /* Default.png */,
-				B57C321E16AF3A46004A6B5F /* Default@2x.png */,
-				B57C322016AF3A46004A6B5F /* Default-568h@2x.png */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B57C323716AF3A47004A6B5F /* BLWebSocketsServerTests */ = {
@@ -161,6 +180,65 @@
 				B57C323A16AF3A47004A6B5F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B57C324816AF3AC3004A6B5F /* BLWebSocketsServerEchoDemo */ = {
+			isa = PBXGroup;
+			children = (
+				B57C329316AF4322004A6B5F /* www */,
+				B57C324916AF3AC3004A6B5F /* AppDelegate.h */,
+				B57C324A16AF3AC3004A6B5F /* AppDelegate.m */,
+				B57C324B16AF3AC3004A6B5F /* BLWebSocketsServer-Info.plist */,
+				B57C324C16AF3AC3004A6B5F /* BLWebSocketsServer-Prefix.pch */,
+				B57C324D16AF3AC3004A6B5F /* Default-568h@2x.png */,
+				B57C324E16AF3AC3004A6B5F /* Default.png */,
+				B57C324F16AF3AC3004A6B5F /* Default@2x.png */,
+				B57C325016AF3AC3004A6B5F /* InfoPlist.strings */,
+				B57C325216AF3AC3004A6B5F /* MainStoryboard_iPad.storyboard */,
+				B57C325416AF3AC3004A6B5F /* MainStoryboard_iPhone.storyboard */,
+				B57C325616AF3AC3004A6B5F /* main.m */,
+				B57C325716AF3AC3004A6B5F /* ViewController.h */,
+				B57C325816AF3AC3004A6B5F /* ViewController.m */,
+			);
+			path = BLWebSocketsServerEchoDemo;
+			sourceTree = "<group>";
+		};
+		B57C326316AF3AE6004A6B5F /* BLWebSocketsServer */ = {
+			isa = PBXGroup;
+			children = (
+				B57C328A16AF3B4E004A6B5F /* BLWebSocketsServer.h */,
+				B57C328B16AF3B4E004A6B5F /* BLWebSocketsServer.m */,
+				B57C326416AF3B1B004A6B5F /* libwebsockets */,
+			);
+			path = BLWebSocketsServer;
+			sourceTree = "<group>";
+		};
+		B57C326416AF3B1B004A6B5F /* libwebsockets */ = {
+			isa = PBXGroup;
+			children = (
+				B57C327F16AF3B3B004A6B5F /* output.c */,
+				B57C328016AF3B3B004A6B5F /* parsers.c */,
+				B57C328116AF3B3B004A6B5F /* private-libwebsockets.h */,
+				B57C328216AF3B3B004A6B5F /* server-handshake.c */,
+				B57C328316AF3B3B004A6B5F /* server.c */,
+				B57C328416AF3B3B004A6B5F /* sha-1.c */,
+				B57C326516AF3B2D004A6B5F /* base64-decode.c */,
+				B57C326616AF3B2D004A6B5F /* client-handshake.c */,
+				B57C326716AF3B2D004A6B5F /* client-parser.c */,
+				B57C326816AF3B2D004A6B5F /* client.c */,
+				B57C326916AF3B2D004A6B5F /* daemonize.c */,
+				B57C326A16AF3B2D004A6B5F /* extension-deflate-frame.c */,
+				B57C326B16AF3B2D004A6B5F /* extension-deflate-frame.h */,
+				B57C326C16AF3B2D004A6B5F /* extension-deflate-stream.c */,
+				B57C326D16AF3B2D004A6B5F /* extension-deflate-stream.h */,
+				B57C326E16AF3B2D004A6B5F /* extension.c */,
+				B57C326F16AF3B2D004A6B5F /* getifaddrs.c */,
+				B57C327016AF3B2D004A6B5F /* getifaddrs.h */,
+				B57C327116AF3B2D004A6B5F /* handshake.c */,
+				B57C327216AF3B2D004A6B5F /* libwebsockets.c */,
+				B57C327316AF3B2D004A6B5F /* libwebsockets.h */,
+			);
+			path = libwebsockets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,12 +312,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B57C321516AF3A46004A6B5F /* InfoPlist.strings in Resources */,
-				B57C321D16AF3A46004A6B5F /* Default.png in Resources */,
-				B57C321F16AF3A46004A6B5F /* Default@2x.png in Resources */,
-				B57C322116AF3A46004A6B5F /* Default-568h@2x.png in Resources */,
-				B57C322416AF3A46004A6B5F /* MainStoryboard_iPhone.storyboard in Resources */,
-				B57C322716AF3A46004A6B5F /* MainStoryboard_iPad.storyboard in Resources */,
+				B57C325B16AF3AC3004A6B5F /* Default-568h@2x.png in Resources */,
+				B57C325C16AF3AC3004A6B5F /* Default.png in Resources */,
+				B57C325D16AF3AC3004A6B5F /* Default@2x.png in Resources */,
+				B57C325E16AF3AC3004A6B5F /* InfoPlist.strings in Resources */,
+				B57C325F16AF3AC3004A6B5F /* MainStoryboard_iPad.storyboard in Resources */,
+				B57C326016AF3AC3004A6B5F /* MainStoryboard_iPhone.storyboard in Resources */,
+				B57C329416AF4322004A6B5F /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,9 +353,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B57C321716AF3A46004A6B5F /* main.m in Sources */,
-				B57C321B16AF3A46004A6B5F /* AppDelegate.m in Sources */,
-				B57C322A16AF3A46004A6B5F /* ViewController.m in Sources */,
+				B57C325916AF3AC3004A6B5F /* AppDelegate.m in Sources */,
+				B57C326116AF3AC3004A6B5F /* main.m in Sources */,
+				B57C326216AF3AC3004A6B5F /* ViewController.m in Sources */,
+				B57C327416AF3B2D004A6B5F /* base64-decode.c in Sources */,
+				B57C327516AF3B2D004A6B5F /* client-handshake.c in Sources */,
+				B57C327616AF3B2D004A6B5F /* client-parser.c in Sources */,
+				B57C327716AF3B2D004A6B5F /* client.c in Sources */,
+				B57C327816AF3B2D004A6B5F /* daemonize.c in Sources */,
+				B57C327916AF3B2D004A6B5F /* extension-deflate-frame.c in Sources */,
+				B57C327A16AF3B2D004A6B5F /* extension-deflate-stream.c in Sources */,
+				B57C327B16AF3B2D004A6B5F /* extension.c in Sources */,
+				B57C327C16AF3B2D004A6B5F /* getifaddrs.c in Sources */,
+				B57C327D16AF3B2D004A6B5F /* handshake.c in Sources */,
+				B57C327E16AF3B2D004A6B5F /* libwebsockets.c in Sources */,
+				B57C328516AF3B3B004A6B5F /* output.c in Sources */,
+				B57C328616AF3B3B004A6B5F /* parsers.c in Sources */,
+				B57C328716AF3B3B004A6B5F /* server-handshake.c in Sources */,
+				B57C328816AF3B3B004A6B5F /* server.c in Sources */,
+				B57C328916AF3B3B004A6B5F /* sha-1.c in Sources */,
+				B57C328C16AF3B4E004A6B5F /* BLWebSocketsServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,36 +395,36 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B57C321316AF3A46004A6B5F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B57C321416AF3A46004A6B5F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B57C322216AF3A46004A6B5F /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B57C322316AF3A46004A6B5F /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		B57C322516AF3A46004A6B5F /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B57C322616AF3A46004A6B5F /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		B57C323A16AF3A47004A6B5F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B57C323B16AF3A47004A6B5F /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B57C325016AF3AC3004A6B5F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B57C325116AF3AC3004A6B5F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B57C325216AF3AC3004A6B5F /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B57C325316AF3AC3004A6B5F /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		B57C325416AF3AC3004A6B5F /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B57C325516AF3AC3004A6B5F /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -390,8 +486,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BLWebSocketsServer/BLWebSocketsServer-Prefix.pch";
-				INFOPLIST_FILE = "BLWebSocketsServer/BLWebSocketsServer-Info.plist";
+				GCC_PREFIX_HEADER = "BLWebSocketsServerEchoDemo/BLWebSocketsServer-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/BLWebSocketsServerEchoDemo/BLWebSocketsServer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -401,8 +497,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BLWebSocketsServer/BLWebSocketsServer-Prefix.pch";
-				INFOPLIST_FILE = "BLWebSocketsServer/BLWebSocketsServer-Info.plist";
+				GCC_PREFIX_HEADER = "BLWebSocketsServerEchoDemo/BLWebSocketsServer-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/BLWebSocketsServerEchoDemo/BLWebSocketsServer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -461,6 +557,7 @@
 				B57C324416AF3A47004A6B5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B57C324516AF3A47004A6B5F /* Build configuration list for PBXNativeTarget "BLWebSocketsServerTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +566,7 @@
 				B57C324716AF3A47004A6B5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

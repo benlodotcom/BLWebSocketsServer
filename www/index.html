@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="jquery-1.9.0.min.js"></script>
+            <script type="text/javascript">
+                $(function() {
+                  window.WebSocket = window.WebSocket || window.MozWebSocket;
+                  
+                  var websocket = new WebSocket('ws://127.0.0.1:9000',
+                                                'echo-protocol');
+                  
+                  websocket.onopen = function () {
+                  console.log("socket opened");
+                  $('h1').css('color', 'green');
+                  };
+                  
+                  websocket.onerror = function () {
+                  $('h1').css('color', 'red');
+                  };
+                  
+                  websocket.onmessage = function (message) {
+                  console.log(message.data);
+                  $('div').append($('<p>', { text: message.data }));
+                  };
+                  
+                  
+                  $('button').click(function(e) {
+                                    e.preventDefault();
+                                    websocket.send($('input').val());
+                                    $('input').val('');
+                                    });
+                  });
+                </script>
+        </head>
+    <body>
+        <h1>WebSockets echo client</h1>
+        <form>
+            <input type="text" />
+            <button>Send</button>
+        </form>
+        <div></div>
+    </body>
+</html>
