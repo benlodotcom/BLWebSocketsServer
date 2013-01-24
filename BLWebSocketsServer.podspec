@@ -16,5 +16,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '5.0'
   s.source_files = 'BLWebSocketsServer', 'BLWebSocketsServer/libwebsockets'
   s.library   = 'z'
+  s.xcconfig = { "GCC_PREPROCESSOR_DEFINITIONS" => '$(inherited) LWS_NO_DAEMONIZE=1' }
   s.requires_arc = true
 end
