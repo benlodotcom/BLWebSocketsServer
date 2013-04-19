@@ -11,10 +11,12 @@
 static int pollingInterval = 20;
 static char * http_only_protocol = "http-only";
 
-BLWebSocketsHandleRequestBlock _handleRequestBlock;
-/* Context representing the server*/
-struct libwebsocket_context *context;
-int callback(struct libwebsocket_context * this,
+static BLWebSocketsHandleRequestBlock _handleRequestBlock = NULL;
+/* Context representing the server */
+static struct libwebsocket_context *context;
+
+/* Declaration of the callbacks (http and websockets), libwebsockets requires an http callback even if we don't use it*/
+static int callback_websockets(struct libwebsocket_context * this,
              struct libwebsocket *wsi,
              enum libwebsocket_callback_reasons reason,
              void *user, void *in, size_t len);
@@ -23,60 +25,47 @@ int callback(struct libwebsocket_context * this,
 static int callback_http(struct libwebsocket_context *context,
                          struct libwebsocket *wsi,
                          enum libwebsocket_callback_reasons reason, void *user,
-                         void *in, size_t len)
-{
-    return 0;
-}
+                         void *in, size_t len);
 
 @interface BLWebSocketsServer()
 
-@property (nonatomic, assign) int port;
-@property (nonatomic, assign) NSString *protocolName;
 /*Using atomic in our case is sufficient to ensure thread safety*/
 @property (atomic, assign, readwrite) BOOL isRunning;
+@property (atomic, assign) BOOL stopServer;
+
+- (void)cleanup;
 
 @end
 
 @implementation BLWebSocketsServer
+
+#pragma mark - Shared instance
++ (BLWebSocketsServer *)sharedInstance {
+    static BLWebSocketsServer *sharedServer = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedServer = [[self alloc] init];
+    });
+    return sharedServer;
+}
 
 #pragma mark - Custom getters and setters
 - (void)setHandleRequestBlock:(BLWebSocketsHandleRequestBlock)block {
     _handleRequestBlock = block;
 }
 
-#pragma mark - Initialization
-- (id)init {
-    return [self initWithPort:9000 andProtocolName:@""];
-}
-
-/*Designated initializer*/
-- (id)initWithPort:(int)port andProtocolName:(NSString *)protocolName {
-    self = [super init];
-    if (self) {
-        _handleRequestBlock = nil;
-        self.port = port;
-        self.protocolName = protocolName;
-    }
-    return self;
-}
-
 #pragma mark - Server management
-- (void)start {
-    
-    NSLog(@"%@", @"Starting server");
+- (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName {
     
     if (self.isRunning) {
         return;
     }
-    else {
-        self.isRunning = YES;
-    }
-    
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-    
+        
     dispatch_async(queue, ^{
         
+        /* Context creation */
         struct libwebsocket_protocols protocols[] = {
             /* first protocol must always be HTTP handler */
             {
@@ -85,8 +74,8 @@ static int callback_http(struct libwebsocket_context *context,
                 0
             },
             {
-                [self.protocolName cStringUsingEncoding:NSASCIIStringEncoding],
-                callback,   // callback
+                [protocolName cStringUsingEncoding:NSASCIIStringEncoding],
+                callback_websockets,   // callback
                 0            // we don't use any per session data
                 
             },
@@ -94,22 +83,25 @@ static int callback_http(struct libwebsocket_context *context,
                 NULL, NULL, 0   /* End of list */
             }
         };
-        context = libwebsocket_create_context(self.port, NULL, protocols,
+        context = libwebsocket_create_context(port, NULL, protocols,
                                               libwebsocket_internal_extensions,
                                               NULL, NULL, NULL, -1, -1, 0, NULL);
         
         if (context == NULL) {
             NSLog(@"Initialization of the websockets server failed");
         }
-        
-        /*For now infinite loop which proceses events and wait for n ms. See how we could use poll() or select()*/
-        while (self.isRunning && context) {
-            libwebsocket_service(context, pollingInterval);
+        else {
+            self.isRunning = YES;
+            
+            /* For now infinite loop which proceses events and wait for n ms. */
+            while (!self.stopServer) {
+                libwebsocket_service(context, pollingInterval);
+            }
+            
+            [self cleanup];
+            
+            self.isRunning = NO;
         }
-        
-        NSLog(@"%@", @"Stopping server");
-        libwebsocket_context_destroy(context);
-        context = NULL;
         
     });
     
@@ -121,13 +113,21 @@ static int callback_http(struct libwebsocket_context *context,
         return;
     }
     else {
-        self.isRunning = NO;
+        self.stopServer = YES;
     }
+}
+
+- (void)cleanup {
+    libwebsocket_context_destroy(context);
+    context = NULL;
+    self.stopServer = NO;
+    [self setHandleRequestBlock:NULL];
 }
 
 @end
 
-int callback(struct libwebsocket_context * this,
+/* Implementation of the callbacks (http and websockets) */
+static int callback_websockets(struct libwebsocket_context * this,
              struct libwebsocket *wsi,
              enum libwebsocket_callback_reasons reason,
              void *user, void *in, size_t len) {
@@ -154,4 +154,13 @@ int callback(struct libwebsocket_context * this,
     
     return 0;
 }
+
+static int callback_http(struct libwebsocket_context *context,
+                         struct libwebsocket *wsi,
+                         enum libwebsocket_callback_reasons reason, void *user,
+                         void *in, size_t len)
+{
+    return 0;
+}
+
 

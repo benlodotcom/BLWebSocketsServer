@@ -15,8 +15,9 @@ typedef NSData *(^BLWebSocketsHandleRequestBlock)(NSData * requestData);
 
 @property (atomic, assign, readonly) BOOL isRunning;
 
-- (id)initWithPort:(int)port andProtocolName:(NSString *)protocolName;
-- (void)start;
++ (BLWebSocketsServer *)sharedInstance;
+
+- (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName;
 - (void)stop;
 - (void)setHandleRequestBlock:(BLWebSocketsHandleRequestBlock)block;
 

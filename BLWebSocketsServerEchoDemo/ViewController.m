@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "BLWebSocketsServer.h"
 
+static int port = 9000;
 static NSString *echoProtocol = @"echo-protocol";
 
 @interface ViewController ()
@@ -23,25 +24,23 @@ static NSString *echoProtocol = @"echo-protocol";
     [super viewDidLoad];
     
 	/*Create a simple echo server*/
-    self.server = [[BLWebSocketsServer alloc] initWithPort:9000 andProtocolName:echoProtocol];
-    [self.server setHandleRequestBlock:^NSData *(NSData *data) {
+    [[BLWebSocketsServer sharedInstance] setHandleRequestBlock:^NSData *(NSData *data) {
         return data;
     }];
     
     /*Load the test html file in the webview*/
-    //NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"www"];
     NSURL *indexURL = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html" subdirectory:@"www"];
     [self.webView loadRequest:[NSURLRequest requestWithURL:indexURL]];
 }
 
 
 - (IBAction)toggleServer:(UIBarButtonItem *)sender {
-    if (self.server.isRunning) {
-        [self.server stop];
+    if ([BLWebSocketsServer sharedInstance].isRunning) {
+        [[BLWebSocketsServer sharedInstance] stop];
         sender.title = @"Start server";
     }
     else {
-        [self.server start];
+        [[BLWebSocketsServer sharedInstance] startListeningOnPort:port withProtocolName:echoProtocol];
         sender.title = @"Stop server";
     }
     [self.webView reload];
