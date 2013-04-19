@@ -11,6 +11,9 @@
 static int pollingInterval = 20;
 static char * http_only_protocol = "http-only";
 
+/* Error constants */
+static NSString *errorDomain = @"com.blwebsocketsserver";
+
 static BLWebSocketsHandleRequestBlock _handleRequestBlock = NULL;
 /* Context representing the server */
 static struct libwebsocket_context *context;
@@ -29,9 +32,12 @@ static int callback_http(struct libwebsocket_context *context,
 
 @interface BLWebSocketsServer()
 
-/*Using atomic in our case is sufficient to ensure thread safety*/
+/* Using atomic in our case is sufficient to ensure thread safety */
 @property (atomic, assign, readwrite) BOOL isRunning;
 @property (atomic, assign) BOOL stopServer;
+
+/* Temporary storage for the server stopped completion block */
+@property (nonatomic, copy) void(^serverStoppedCompletionBlock)();
 
 - (void)cleanup;
 
@@ -55,7 +61,7 @@ static int callback_http(struct libwebsocket_context *context,
 }
 
 #pragma mark - Server management
-- (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName {
+- (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName andCompletionBlock:(void(^)(NSError *error))completionBlock {
     
     if (self.isRunning) {
         return;
@@ -86,11 +92,16 @@ static int callback_http(struct libwebsocket_context *context,
         context = libwebsocket_create_context(port, NULL, protocols,
                                               libwebsocket_internal_extensions,
                                               NULL, NULL, NULL, -1, -1, 0, NULL);
-        
+        NSError *error = nil;
         if (context == NULL) {
-            NSLog(@"Initialization of the websockets server failed");
+            error = [NSError errorWithDomain:errorDomain code:0 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Couldn't create the libwebsockets context.", @"")}];
         }
-        else {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(error);
+        });
+        
+        if (!error) {
             self.isRunning = YES;
             
             /* For now infinite loop which proceses events and wait for n ms. */
@@ -101,13 +112,20 @@ static int callback_http(struct libwebsocket_context *context,
             [self cleanup];
             
             self.isRunning = NO;
+        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.serverStoppedCompletionBlock();
+                self.serverStoppedCompletionBlock = nil;
+            });
         }
         
     });
     
 }
 
-- (void)stop {
+- (void)stopWithCompletionBlock:(void (^)())completionBlock {
+    
+    self.serverStoppedCompletionBlock = completionBlock;
     
     if (!self.isRunning) {
         return;
@@ -121,7 +139,6 @@ static int callback_http(struct libwebsocket_context *context,
     libwebsocket_context_destroy(context);
     context = NULL;
     self.stopServer = NO;
-    [self setHandleRequestBlock:NULL];
 }
 
 @end

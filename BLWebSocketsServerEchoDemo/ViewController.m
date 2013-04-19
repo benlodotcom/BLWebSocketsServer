@@ -35,13 +35,20 @@ static NSString *echoProtocol = @"echo-protocol";
 
 
 - (IBAction)toggleServer:(UIBarButtonItem *)sender {
+    sender.enabled = NO;
     if ([BLWebSocketsServer sharedInstance].isRunning) {
-        [[BLWebSocketsServer sharedInstance] stop];
-        sender.title = @"Start server";
+        [[BLWebSocketsServer sharedInstance] stopWithCompletionBlock:^ {
+            NSLog(@"Server stopped");
+            sender.title = @"Start server";
+            sender.enabled = YES;
+        }];
     }
     else {
-        [[BLWebSocketsServer sharedInstance] startListeningOnPort:port withProtocolName:echoProtocol];
-        sender.title = @"Stop server";
+        [[BLWebSocketsServer sharedInstance] startListeningOnPort:port withProtocolName:echoProtocol andCompletionBlock:^(NSError *error) {
+            NSLog(@"Server started");
+            sender.title = @"Stop server";
+            sender.enabled = YES;
+        }];
     }
     [self.webView reload];
 }

@@ -17,8 +17,8 @@ typedef NSData *(^BLWebSocketsHandleRequestBlock)(NSData * requestData);
 
 + (BLWebSocketsServer *)sharedInstance;
 
-- (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName;
-- (void)stop;
+- (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName andCompletionBlock:(void(^)(NSError *error))completionBlock;
+- (void)stopWithCompletionBlock:(void(^)())completionBlock;
 - (void)setHandleRequestBlock:(BLWebSocketsHandleRequestBlock)block;
 
 @end
