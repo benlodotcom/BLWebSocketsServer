@@ -144,7 +144,7 @@ int callback(struct libwebsocket_context * this,
             }
             response_buf = (unsigned char*) malloc(LWS_SEND_BUFFER_PRE_PADDING + response.length +LWS_SEND_BUFFER_POST_PADDING);
             bcopy([response bytes], &response_buf[LWS_SEND_BUFFER_PRE_PADDING], response.length);
-            libwebsocket_write(wsi, &response_buf[LWS_SEND_BUFFER_PRE_PADDING], len, LWS_WRITE_TEXT);
+            libwebsocket_write(wsi, &response_buf[LWS_SEND_BUFFER_PRE_PADDING], response.length, LWS_WRITE_TEXT);
             free(response_buf);
             break;
         }
