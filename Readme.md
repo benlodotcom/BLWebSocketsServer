@@ -1,12 +1,18 @@
 BLWebSocketsServer is a simple websockets server for iOS built around [libwebsockets](http://git.warmcat.com/cgi-bin/cgit/libwebsockets/). Here's how easy it is to start a Websockets server in your iOS app:
 
 ``` objective-c
-BLWebSocketsServer *server = [[BLWebSocketsServer alloc] initWithPort:9000 andProtocolName:@"my-protocol-name"];
-[server setHandleRequestBlock:^NSData *(NSData *data) {
+[[BLWebSocketsServer sharedInstance] setHandleRequestBlock:^NSData *(NSData *data) {
   //simply echo what has been received
   return data;
 }];
-[server start];
+[[BLWebSocketsServer sharedInstance] startListeningOnPort:9000 withProtocolName:@"my-protocol-name" andCompletionBlock:^(NSError *error) {
+    if (!error) {
+        NSLog(@"Server started");
+    }
+    else {
+        NSLog(@"%@", error);
+    }
+}];
 ```
 
 ## How To Get Started
@@ -19,29 +25,33 @@ BLWebSocketsServer *server = [[BLWebSocketsServer alloc] initWithPort:9000 andPr
 This is what you need to know about BLWebSocketsServer:
 
 ``` objective-c
+//Access the BLWebSocketsServer singleton
+[BLWebSocketsServer sharedInstance]
 //To handle a request, use a block that receives as arguments the data in the request and returns the response data
 typedef NSData *(^BLWebSocketsHandleRequestBlock)(NSData * requestData);
+//Add the block that'll handle the request and the corresponding response with this
+- (void)setHandleRequestBlock:(BLWebSocketsHandleRequestBlock)block;
+//Method to start the server
+- (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName andCompletionBlock:(void(^)(NSError *error))completionBlock;
 //Get the status of the server with this
 @property (atomic, assign, readonly) BOOL isRunning;
-//Create the server with this
-- (id)initWithPort:(int)port andProtocolName:(NSString *)protocolName;
-//Add the block that'll handle the request and the corresponding response with this
-- (void)setHandleRequestBlock:(HandleRequestBlock)block;
-//Method to start the server
-- (void)start;
 //Well...method to stop the server
-- (void)stop;
+- (void)stopWithCompletionBlock:(void(^)())completionBlock;
 ```
 
 ## Contribute
-When there is a change you'd like to make:
+When there is a change you'd like to make (if you don't feel inspired you can check the Todo below):
 
 - Fork the repository
 - [Send a pull request](https://github.com/benlodotcom/BLWebSocketsServer/pulls)
-- I'll happily merge it in the master ;-)
+- I'll happily merge it in the master !
 
 ## Todo
-Here are some things I'd like to improve:
 
-- Use poll() or select() to avoid having anf infinite while loop polling the socket for data.
+- Add async (push) support.
+- Add the ability to listen simultaneously on multiple ports for different protocols.
+- Use dispatch sources instead of an infinite loop.
+
+Keep working on the documentation, it is a never ending task anyway ;-)
+
 
