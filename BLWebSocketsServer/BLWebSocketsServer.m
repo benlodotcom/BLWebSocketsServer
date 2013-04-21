@@ -14,10 +14,6 @@ static char * http_only_protocol = "http-only";
 /* Error constants */
 static NSString *errorDomain = @"com.blwebsocketsserver";
 
-static BLWebSocketsHandleRequestBlock _handleRequestBlock = NULL;
-/* Context representing the server */
-static struct libwebsocket_context *context;
-
 /* Declaration of the callbacks (http and websockets), libwebsockets requires an http callback even if we don't use it*/
 static int callback_websockets(struct libwebsocket_context * this,
              struct libwebsocket *wsi,
@@ -30,14 +26,20 @@ static int callback_http(struct libwebsocket_context *context,
                          enum libwebsocket_callback_reasons reason, void *user,
                          void *in, size_t len);
 
+static BLWebSocketsServer *sharedInstance = nil;
+
 @interface BLWebSocketsServer()
 
 /* Using atomic in our case is sufficient to ensure thread safety */
 @property (atomic, assign, readwrite) BOOL isRunning;
 @property (atomic, assign) BOOL stopServer;
 
+/* Context representing the server */
+@property (nonatomic, assign) struct libwebsocket_context *context;
+
+@property (nonatomic, strong, readwrite) BLWebSocketsHandleRequestBlock handleRequestBlock;
 /* Temporary storage for the server stopped completion block */
-@property (nonatomic, copy) void(^serverStoppedCompletionBlock)();
+@property (nonatomic, strong) void(^serverStoppedCompletionBlock)();
 
 - (void)cleanup;
 
@@ -47,17 +49,13 @@ static int callback_http(struct libwebsocket_context *context,
 
 #pragma mark - Shared instance
 + (BLWebSocketsServer *)sharedInstance {
-    static BLWebSocketsServer *sharedServer = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedServer = [[self alloc] init];
+        sharedInstance = [[self alloc] init];
+        sharedInstance.handleRequestBlock = NULL;
+        
     });
-    return sharedServer;
-}
-
-#pragma mark - Custom getters and setters
-- (void)setHandleRequestBlock:(BLWebSocketsHandleRequestBlock)block {
-    _handleRequestBlock = block;
+    return sharedInstance;
 }
 
 #pragma mark - Server management
@@ -89,11 +87,11 @@ static int callback_http(struct libwebsocket_context *context,
                 NULL, NULL, 0   /* End of list */
             }
         };
-        context = libwebsocket_create_context(port, NULL, protocols,
+        self.context = libwebsocket_create_context(port, NULL, protocols,
                                               libwebsocket_internal_extensions,
                                               NULL, NULL, NULL, -1, -1, 0, NULL);
         NSError *error = nil;
-        if (context == NULL) {
+        if (self.context == NULL) {
             error = [NSError errorWithDomain:errorDomain code:0 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Couldn't create the libwebsockets context.", @"")}];
         }
         
@@ -106,12 +104,13 @@ static int callback_http(struct libwebsocket_context *context,
             
             /* For now infinite loop which proceses events and wait for n ms. */
             while (!self.stopServer) {
-                libwebsocket_service(context, pollingInterval);
+                libwebsocket_service(self.context, 0);
+                usleep(pollingInterval);
             }
             
-            [self cleanup];
-            
             self.isRunning = NO;
+            
+            [self cleanup];
         
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.serverStoppedCompletionBlock();
@@ -136,8 +135,8 @@ static int callback_http(struct libwebsocket_context *context,
 }
 
 - (void)cleanup {
-    libwebsocket_context_destroy(context);
-    context = NULL;
+    libwebsocket_context_destroy(self.context);
+    self.context = NULL;
     self.stopServer = NO;
 }
 
@@ -156,8 +155,8 @@ static int callback_websockets(struct libwebsocket_context * this,
             unsigned char *response_buf;
             NSData *data = [NSData dataWithBytes:(const void *)in length:len];
             NSData *response = nil;
-            if (_handleRequestBlock) {
-                response = _handleRequestBlock(data);
+            if (sharedInstance.handleRequestBlock) {
+                response = sharedInstance.handleRequestBlock(data);
             }
             response_buf = (unsigned char*) malloc(LWS_SEND_BUFFER_PRE_PADDING + response.length +LWS_SEND_BUFFER_POST_PADDING);
             bcopy([response bytes], &response_buf[LWS_SEND_BUFFER_PRE_PADDING], response.length);
