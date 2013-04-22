@@ -43,6 +43,7 @@
 		B57C328C16AF3B4E004A6B5F /* BLWebSocketsServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B57C328B16AF3B4E004A6B5F /* BLWebSocketsServer.m */; };
 		B57C329016AF3BF5004A6B5F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C328F16AF3BF5004A6B5F /* libz.dylib */; };
 		B57C329416AF4322004A6B5F /* www in Resources */ = {isa = PBXBuildFile; fileRef = B57C329316AF4322004A6B5F /* www */; };
+		B5D8FCD017247D2800AA1D8A /* BLAsyncMessageQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8FCCF17247D2800AA1D8A /* BLAsyncMessageQueue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		B57C328B16AF3B4E004A6B5F /* BLWebSocketsServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLWebSocketsServer.m; sourceTree = "<group>"; };
 		B57C328F16AF3BF5004A6B5F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B57C329316AF4322004A6B5F /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
+		B5D8FCCE17247D2800AA1D8A /* BLAsyncMessageQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLAsyncMessageQueue.h; path = libwebsockets/BLAsyncMessageQueue.h; sourceTree = "<group>"; };
+		B5D8FCCF17247D2800AA1D8A /* BLAsyncMessageQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLAsyncMessageQueue.m; path = libwebsockets/BLAsyncMessageQueue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 			children = (
 				B57C328A16AF3B4E004A6B5F /* BLWebSocketsServer.h */,
 				B57C328B16AF3B4E004A6B5F /* BLWebSocketsServer.m */,
+				B5D8FCCE17247D2800AA1D8A /* BLAsyncMessageQueue.h */,
+				B5D8FCCF17247D2800AA1D8A /* BLAsyncMessageQueue.m */,
 				B57C326416AF3B1B004A6B5F /* libwebsockets */,
 			);
 			path = BLWebSocketsServer;
@@ -373,6 +378,7 @@
 				B57C328816AF3B3B004A6B5F /* server.c in Sources */,
 				B57C328916AF3B3B004A6B5F /* sha-1.c in Sources */,
 				B57C328C16AF3B4E004A6B5F /* BLWebSocketsServer.m in Sources */,
+				B5D8FCD017247D2800AA1D8A /* BLAsyncMessageQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "libwebsockets.h"
 
 typedef NSData *(^BLWebSocketsHandleRequestBlock)(NSData * requestData);
 
@@ -20,5 +19,6 @@ typedef NSData *(^BLWebSocketsHandleRequestBlock)(NSData * requestData);
 - (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName andCompletionBlock:(void(^)(NSError *error))completionBlock;
 - (void)stopWithCompletionBlock:(void(^)())completionBlock;
 - (void)setHandleRequestBlock:(BLWebSocketsHandleRequestBlock)handleRequestBlock;
+- (void)pushToAll:(NSData *)data;
 
 @end
