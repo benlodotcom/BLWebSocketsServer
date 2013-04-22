@@ -44,6 +44,7 @@
 		B57C329016AF3BF5004A6B5F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B57C328F16AF3BF5004A6B5F /* libz.dylib */; };
 		B57C329416AF4322004A6B5F /* www in Resources */ = {isa = PBXBuildFile; fileRef = B57C329316AF4322004A6B5F /* www */; };
 		B5D8FCD017247D2800AA1D8A /* BLAsyncMessageQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8FCCF17247D2800AA1D8A /* BLAsyncMessageQueue.m */; };
+		B5D8FCF21725B91A00AA1D8A /* starwars.txt in Resources */ = {isa = PBXBuildFile; fileRef = B5D8FCF11725B91A00AA1D8A /* starwars.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		B57C329316AF4322004A6B5F /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		B5D8FCCE17247D2800AA1D8A /* BLAsyncMessageQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLAsyncMessageQueue.h; path = libwebsockets/BLAsyncMessageQueue.h; sourceTree = "<group>"; };
 		B5D8FCCF17247D2800AA1D8A /* BLAsyncMessageQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLAsyncMessageQueue.m; path = libwebsockets/BLAsyncMessageQueue.m; sourceTree = "<group>"; };
+		B5D8FCF11725B91A00AA1D8A /* starwars.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = starwars.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 		B57C324816AF3AC3004A6B5F /* BLWebSocketsServerEchoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B5D8FCF11725B91A00AA1D8A /* starwars.txt */,
 				B57C329316AF4322004A6B5F /* www */,
 				B57C324916AF3AC3004A6B5F /* AppDelegate.h */,
 				B57C324A16AF3AC3004A6B5F /* AppDelegate.m */,
@@ -324,6 +327,7 @@
 				B57C325F16AF3AC3004A6B5F /* MainStoryboard_iPad.storyboard in Resources */,
 				B57C326016AF3AC3004A6B5F /* MainStoryboard_iPhone.storyboard in Resources */,
 				B57C329416AF4322004A6B5F /* www in Resources */,
+				B5D8FCF21725B91A00AA1D8A /* starwars.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
