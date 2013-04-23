@@ -1,10 +1,14 @@
-BLWebSocketsServer is a simple websockets server for iOS built around [libwebsockets](http://git.warmcat.com/cgi-bin/cgit/libwebsockets/). Here's how easy it is to start a Websockets server in your iOS app:
+BLWebSocketsServer is a lightweight websockets server for iOS built around [libwebsockets](http://git.warmcat.com/cgi-bin/cgit/libwebsockets/). The server suports both **synchronous requests and push**.
+
+Here's how easy it is to start a Websockets server in your iOS app:
 
 ``` objective-c
+//every request made by a client will trigger the execution of this block.
 [[BLWebSocketsServer sharedInstance] setHandleRequestBlock:^NSData *(NSData *data) {
   //simply echo what has been received
   return data;
 }];
+//Start the server
 [[BLWebSocketsServer sharedInstance] startListeningOnPort:9000 withProtocolName:@"my-protocol-name" andCompletionBlock:^(NSError *error) {
     if (!error) {
         NSLog(@"Server started");
@@ -13,11 +17,13 @@ BLWebSocketsServer is a simple websockets server for iOS built around [libwebsoc
         NSLog(@"%@", error);
     }
 }];
+//Push a message to every connected clients
+[[BLWebSocketsServer sharedInstance] pushToAll:[@"pushed message" dataUsingEncoding:NSUTF8StringEncoding]];
 ```
 
 ## How To Get Started
 
-- [Download BLWebSocketsServer](https://github.com/AFNetworking/AFNetworking/zipball/master) and try out the echo server example.
+- [Download BLWebSocketsServer](https://github.com/AFNetworking/AFNetworking/zipball/master) and try out the demo project.
 - To include the server in your app copy the BLWebSocketsServer, add it to your project and add libz.dylib.
 
 ## Usage
@@ -35,6 +41,8 @@ typedef NSData *(^BLWebSocketsHandleRequestBlock)(NSData * requestData);
 - (void)startListeningOnPort:(int)port withProtocolName:(NSString *)protocolName andCompletionBlock:(void(^)(NSError *error))completionBlock;
 //Get the status of the server with this
 @property (atomic, assign, readonly) BOOL isRunning;
+//Push data to all the connected clients
+- (void)pushToAll:(NSData *)data;
 //Well...method to stop the server
 - (void)stopWithCompletionBlock:(void(^)())completionBlock;
 ```
@@ -48,9 +56,10 @@ When there is a change you'd like to make (if you don't feel inspired you can ch
 
 ## Todo
 
-- Add async (push) support.
 - Add the ability to listen simultaneously on multiple ports for different protocols.
 - Use dispatch sources instead of an infinite loop.
+- Add a session store.
+- Implement per user push.
 
 Keep working on the documentation, it is a never ending task anyway ;-)
 
