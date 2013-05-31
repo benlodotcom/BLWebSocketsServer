@@ -108,9 +108,11 @@ static BLWebSocketsServer *sharedInstance = nil;
             
             /* For now infinite loop which proceses events and wait for n ms. */
             while (!self.stopServer) {
-                libwebsocket_service(self.context, 0);
-                if (self.asyncMessageQueue.messagesCount > 0) {
-                    libwebsocket_callback_on_writable_all_protocol(&(self.context->protocols[1]));
+                @autoreleasepool {
+                    libwebsocket_service(self.context, 0);
+                    if (self.asyncMessageQueue.messagesCount > 0) {
+                        libwebsocket_callback_on_writable_all_protocol(&(self.context->protocols[1]));
+                    }
                 }
                 usleep(pollingInterval);
             }
