@@ -1489,7 +1489,8 @@ libwebsocket_create_context(int port, const char *interf,
 		return NULL;
 	}
 #ifndef LWS_NO_DAEMONIZE
-	extern int pid_daemon;
+	extern int get_daemonize_pid();
+	int pid_daemon = get_daemonize_pid();
 	context->started_with_parent = pid_daemon;
 	lwsl_notice(" Started with daemon pid %d\n", pid_daemon);
 #endif
