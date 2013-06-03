@@ -63,4 +63,15 @@ When there is a change you'd like to make (if you don't feel inspired you can ch
 
 Keep working on the documentation, it is a never ending task anyway ;-)
 
+## Contact
+
+Benjamin Loulier
+
+- http://twitter.com/benlodotcom
+- http://github.com/benlodotcom
+
+## License
+
+BLWebSocketsServer is available under the MIT license. See the LICENSE file for more info.
+
 
