@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/benlodotcom/BLWebSocketsServer.png)](https://travis-ci.org/benlodotcom/BLWebSocketsServer)
+
 BLWebSocketsServer is a lightweight websockets server for iOS built around [libwebsockets](http://git.warmcat.com/cgi-bin/cgit/libwebsockets/). The server suports both **synchronous requests and push**.
 
 Here's how easy it is to start a Websockets server in your iOS app:
@@ -23,7 +25,7 @@ Here's how easy it is to start a Websockets server in your iOS app:
 
 ## How To Get Started
 
-- [Download BLWebSocketsServer](https://github.com/benlodotcom/BLWebSocketsServer/archive/master.zip) or clone the project and try out the demo project.
+- [Download BLWebSocketsServer](https://github.com/benlodotcom/BLWebSocketsServer/archive/master.zip) or clone the repo, and try out the demo project.
 - To include the server in your app copy the BLWebSocketsServer, add it to your project and add libz.dylib.
 
 ## Usage
