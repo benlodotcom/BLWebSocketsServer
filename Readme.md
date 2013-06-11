@@ -23,14 +23,25 @@ Here's how easy it is to start a Websockets server in your iOS app:
 [[BLWebSocketsServer sharedInstance] pushToAll:[@"pushed message" dataUsingEncoding:NSUTF8StringEncoding]];
 ```
 
-## How To Get Started
+## Installation
 
-- [Download BLWebSocketsServer](https://github.com/benlodotcom/BLWebSocketsServer/archive/master.zip) or clone the repo, and try out the demo project.
-- To include the server in your app copy the BLWebSocketsServer, add it to your project and add libz.dylib.
+### From CocoaPods
+
+Add `pod 'BLWebSocketsServer'` to your Podfile or `pod 'BLWebSocketsServer', :head` if you're feeling adventurous.
+
+### Manually
+
+_**Important note if your project doesn't use ARC**: you must add the `-fobjc-arc` compiler flag to `BLWebSocketsServer.m` in Target Settings > Build Phases > Compile Sources._
+
+- Copy the BLWebSocketsServer folder into your project.
+- Add libz.dylib.
+- Import `BLWebSocketsServer.h`
 
 ## Usage
 
-This is what you need to know about BLWebSocketsServer:
+See sample Xcode project for an exemple of implementation with both synchronous and asynchronous messaging.
+
+### Reference
 
 ``` objective-c
 //Access the BLWebSocketsServer singleton
