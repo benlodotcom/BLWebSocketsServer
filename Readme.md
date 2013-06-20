@@ -39,7 +39,7 @@ _**Important note if your project doesn't use ARC**: you must add the `-fobjc-ar
 
 ## Usage
 
-See sample Xcode project for an exemple of implementation with both synchronous and asynchronous messaging.
+See the sample Xcode project for an example of implementation with both synchronous and asynchronous messaging.
 
 ### Reference
 
