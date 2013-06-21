@@ -206,7 +206,6 @@
 				B57C325716AF3AC3004A6B5F /* ViewController.h */,
 				B57C325816AF3AC3004A6B5F /* ViewController.m */,
 			);
-			name = Example;
 			path = Example;
 			sourceTree = "<group>";
 		};
