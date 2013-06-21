@@ -33,9 +33,8 @@ static BLWebSocketsServer *sharedInstance = nil;
 
 @interface BLWebSocketsServer()
 
-/* Using atomic in our case is sufficient to ensure thread safety */
-@property (atomic, assign, readwrite) BOOL isRunning;
-@property (atomic, assign) BOOL stopServer;
+@property (nonatomic, assign, readwrite) BOOL isRunning;
+@property (nonatomic, assign) dispatch_source_t timer;
 /* Context representing the server */
 @property (nonatomic, assign) struct libwebsocket_context *context;
 @property (nonatomic, strong) BLAsyncMessageQueue *asyncMessageQueue;
@@ -108,6 +107,8 @@ static BLWebSocketsServer *sharedInstance = nil;
         return;
     }
     
+    self.isRunning = YES;
+    
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
     
     self.context = [self createContextWithProtocolName:protocolName callbackFunction:callback_websockets andPort:port];
@@ -116,56 +117,52 @@ static BLWebSocketsServer *sharedInstance = nil;
         error = [NSError errorWithDomain:errorDomain code:0 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Couldn't create the libwebsockets context.", @"")}];
     }
     
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    
+    dispatch_source_set_timer(self.timer,DISPATCH_TIME_NOW, pollingInterval*NSEC_PER_USEC, (pollingInterval/2)*NSEC_PER_USEC);
+    
+    dispatch_source_set_event_handler(self.timer, ^{
+        @autoreleasepool {
+            NSLog(@"Called");
+            libwebsocket_service(self.context, 0);
+            if (self.asyncMessageQueue.messagesCount > 0) {
+                libwebsocket_callback_on_writable_all_protocol(&(self.context->protocols[1]));
+            }
+        }
+    });
+    
+    dispatch_source_set_cancel_handler(self.timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.isRunning = NO;
+            [self cleanup];
+            self.serverStoppedCompletionBlock();
+        });
+    });
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         completionBlock(error);
     });
     
-    dispatch_async(queue, ^{
-        
-        if (!error) {
-            self.isRunning = YES;
-            
-            /* For now infinite loop which proceses events and wait for n ms. */
-            while (!self.stopServer) {
-                @autoreleasepool {
-                    libwebsocket_service(self.context, 0);
-                    if (self.asyncMessageQueue.messagesCount > 0) {
-                        libwebsocket_callback_on_writable_all_protocol(&(self.context->protocols[1]));
-                    }
-                }
-                usleep(pollingInterval);
-            }
-            
-            self.isRunning = NO;
-            
-            [self cleanup];
-        
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.serverStoppedCompletionBlock();
-                self.serverStoppedCompletionBlock = nil;
-            });
-        }
-        
-    });
-    
+    dispatch_resume(self.timer);
 }
 
 - (void)stopWithCompletionBlock:(void (^)())completionBlock {
     
     self.serverStoppedCompletionBlock = completionBlock;
-    
+
     if (!self.isRunning) {
+        self.serverStoppedCompletionBlock();
         return;
     }
     else {
-        self.stopServer = YES;
+        dispatch_source_cancel(self.timer);
     }
 }
 
 - (void)cleanup {
+    dispatch_release(self.timer);
     [self destroyContext:self.context];
     self.context = NULL;
-    self.stopServer = NO;
     [self.asyncMessageQueue reset];
 }
 
