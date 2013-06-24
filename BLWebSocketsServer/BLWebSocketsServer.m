@@ -131,11 +131,7 @@ static BLWebSocketsServer *sharedInstance = nil;
     
     dispatch_source_set_event_handler(self.timer, ^{
         @autoreleasepool {
-            NSLog(@"Called");
             libwebsocket_service(self.context, 0);
-            if (self.asyncMessageQueue.messagesCount > 0) {
-                libwebsocket_callback_on_writable_all_protocol(&(self.context->protocols[1]));
-            }
         }
     });
     
@@ -177,6 +173,9 @@ static BLWebSocketsServer *sharedInstance = nil;
 #pragma mark - Async messaging
 - (void)pushToAll:(NSData *)data {
     [self.asyncMessageQueue enqueueMessageForAllUsers:data];
+    dispatch_async(self.networkQueue, ^{
+        libwebsocket_callback_on_writable_all_protocol(&(self.context->protocols[1]));
+    });
 }
 
 
