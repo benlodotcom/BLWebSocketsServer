@@ -13,7 +13,7 @@
 
 static int pollingInterval = 20000;
 static NSString * http_only_protocol = @"http-only";
-
+const char * queueIdentifier = "com.blwebsocketsserver.network";
 /* Error constants */
 static NSString *errorDomain = @"com.blwebsocketsserver";
 
@@ -35,6 +35,7 @@ static BLWebSocketsServer *sharedInstance = nil;
 
 @property (nonatomic, assign, readwrite) BOOL isRunning;
 @property (nonatomic, assign) dispatch_source_t timer;
+@property (nonatomic, assign) dispatch_queue_t networkQueue;
 /* Context representing the server */
 @property (nonatomic, assign) struct libwebsocket_context *context;
 @property (nonatomic, strong) BLAsyncMessageQueue *asyncMessageQueue;
@@ -59,6 +60,15 @@ static BLWebSocketsServer *sharedInstance = nil;
         sharedInstance.asyncMessageQueue = [[BLAsyncMessageQueue alloc] init];
     });
     return sharedInstance;
+}
+
+#pragma mark - Initialization/Teardown
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.networkQueue = dispatch_queue_create(queueIdentifier, DISPATCH_QUEUE_SERIAL);
+    }
+    return self;
 }
 
 #pragma mark - Context management
@@ -109,15 +119,13 @@ static BLWebSocketsServer *sharedInstance = nil;
     
     self.isRunning = YES;
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-    
     self.context = [self createContextWithProtocolName:protocolName callbackFunction:callback_websockets andPort:port];
     NSError *error = nil;
     if (self.context == NULL) {
         error = [NSError errorWithDomain:errorDomain code:0 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Couldn't create the libwebsockets context.", @"")}];
     }
     
-    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.networkQueue);
     
     dispatch_source_set_timer(self.timer,DISPATCH_TIME_NOW, pollingInterval*NSEC_PER_USEC, (pollingInterval/2)*NSEC_PER_USEC);
     
