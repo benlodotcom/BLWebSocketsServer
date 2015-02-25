@@ -164,7 +164,7 @@ static BLWebSocketsServer *sharedInstance = nil;
 }
 
 - (void)cleanup {
-    dispatch_release(self.timer);
+//    dispatch_release(self.timer);
     [self destroyContext:self.context];
     self.context = NULL;
     [self.asyncMessageQueue reset];
