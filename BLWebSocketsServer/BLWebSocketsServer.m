@@ -11,7 +11,7 @@
 #import "private-libwebsockets.h"
 #import "BLAsyncMessageQueue.h"
 
-static int pollingInterval = 20000;
+static int pollingInterval = INT_MAX;
 static NSString * http_only_protocol = @"http-only";
 const char * queueIdentifier = "com.blwebsocketsserver.network";
 /* Error constants */
@@ -127,11 +127,11 @@ static BLWebSocketsServer *sharedInstance = nil;
     
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.networkQueue);
     
-    dispatch_source_set_timer(self.timer,DISPATCH_TIME_NOW, pollingInterval*NSEC_PER_USEC, (pollingInterval/2)*NSEC_PER_USEC);
+    dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1, 1);
     
     dispatch_source_set_event_handler(self.timer, ^{
         @autoreleasepool {
-            libwebsocket_service(self.context, 0);
+            libwebsocket_service(self.context, pollingInterval);
         }
     });
     
